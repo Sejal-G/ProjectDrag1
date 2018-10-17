@@ -1,3 +1,8 @@
+/*******************
+
+        Ashwathama hai apun
+
+ *******************/
 package com.example.vasu.projectdrag;
 
 import com.google.firebase.database.Exclude;
@@ -22,6 +27,7 @@ public class SSOInfo {
         Address = address;
         Contact = contact;
         AccountNo = accountno;
+
     }
 
     public String getAccountno() {
