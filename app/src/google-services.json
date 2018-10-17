@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "988981335290",
+    "firebase_url": "https://projectdrag-27cb0.firebaseio.com",
+    "project_id": "projectdrag-27cb0",
+    "storage_bucket": "projectdrag-27cb0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:988981335290:android:31eae7a786d9386a",
+        "android_client_info": {
+          "package_name": "com.example.vasu.projectdrag"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "988981335290-jg0ijm62mf4e63c1rhaiqvnum6udfh7p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6URtT05I4ETykvRPN3n4HuRi7AV4pEDI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
