@@ -80,7 +80,7 @@ public class Donor extends AppCompatActivity {
         event.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),));
+                startActivity(new Intent(getApplicationContext(),DEvent.class));
             }
         });
 
