@@ -46,13 +46,14 @@ public class Donor extends AppCompatActivity {
      DatabaseReference myref;
      private StorageReference storageReference;
 
-    Button pro;
+    Button pro,event;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donor);
 
         pro=(Button)findViewById(R.id.id_profile);
+        event=(Button)findViewById(R.id.id_event);
 
         msearchbar=(EditText)findViewById(R.id.id_searchbar);
         recyclerView=(RecyclerView)findViewById(R.id.id_recyclerview);
@@ -73,6 +74,13 @@ public class Donor extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),DProfileEdit.class));
+            }
+        });
+
+        event.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),));
             }
         });
 

@@ -27,7 +27,8 @@
         <activity android:name=".Donor" />
         <activity android:name=".DProfileEdit" />
         <activity android:name=".SProfileEdit" />
-        <activity android:name=".SProfile"></activity>
+        <activity android:name=".SProfile" />
+        <activity android:name=".DEvent"></activity>
     </application>
 
 </manifest>

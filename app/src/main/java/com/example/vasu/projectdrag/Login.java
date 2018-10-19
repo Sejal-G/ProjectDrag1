@@ -30,7 +30,6 @@ public class Login extends AppCompatActivity {
     RadioButton radioButton;
     EditText get_username,get_password;
     Button forgot_password,login,noaccount;
-    int selectId;
 
 
 
@@ -128,7 +127,7 @@ public class Login extends AppCompatActivity {
                             editor.putString("Client",radioButton.getText().toString());
                             editor.commit();
                             //Toast.makeText(getApplicationContext(),"Hey Vasu",Toast.LENGTH_SHORT).show();
-                            if(radioButton.getText().toString()=="SSO")
+                            if(radioButton.getText().toString().equals("SSO"))
                             {
                                 finish();
                                 // Shared Preference Starts
@@ -166,8 +165,8 @@ public class Login extends AppCompatActivity {
     {
         //Toast.makeText(getApplicationContext(),"Hey Sejal",Toast.LENGTH_SHORT).show();
 
-        selectId=radioGroup.getCheckedRadioButtonId();
-        radioButton=(RadioButton)findViewById(selectId);
+
+        radioButton=(RadioButton)findViewById(radioGroup.getCheckedRadioButtonId());
 
     }
 }

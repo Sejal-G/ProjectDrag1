@@ -13,6 +13,7 @@ import java.util.Map;
 public class SSOInfo {
 
     private String SSOName,ISOnumber,Email,Address,Contact,AccountNo;
+    private int RandE=0;
 
     public Map<String, Boolean> stars = new HashMap<>();
 
@@ -27,7 +28,12 @@ public class SSOInfo {
         Address = address;
         Contact = contact;
         AccountNo = accountno;
+        RandE = 0;
 
+    }
+
+    public int getRandE() {
+        return RandE;
     }
 
     public String getAccountno() {
@@ -79,7 +85,12 @@ public class SSOInfo {
         AccountNo = Accountno;
     }
 
+    public void setRandE() {
+        RandE = 0;
+    }
+
     //ye ignore kr bhai
+
     @Exclude
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
@@ -88,10 +99,7 @@ public class SSOInfo {
         result.put("contact", Contact);
         result.put("address", Address);
         result.put("email", Email);
-
         return result;
     }
-
-
 
 }
