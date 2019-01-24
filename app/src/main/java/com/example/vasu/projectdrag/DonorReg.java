@@ -20,13 +20,16 @@ import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import javax.xml.transform.sax.SAXTransformerFactory;
+
 public class DonorReg extends AppCompatActivity {
 
-    private EditText Name,Password,RePassword,Address,Contact,Email,Username;
+    private EditText Name,Password,RePassword,Address,Contact,Email;
     private Button register;
     private FirebaseAuth auth;
     private FirebaseDatabase database;
     private DatabaseReference myref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,12 +41,13 @@ public class DonorReg extends AppCompatActivity {
         Address=(EditText)findViewById(R.id.id_address);
         Contact=(EditText)findViewById(R.id.id_contact);
         Email=(EditText)findViewById(R.id.id_email);
+        //State=(EditText)findViewById(R.id.id_state);
         //Username=(EditText)findViewById(R.id.id_username);
         register=(Button)findViewById(R.id.id_register);
 
         auth=FirebaseAuth.getInstance();
         database=FirebaseDatabase.getInstance();
-        myref=database.getReference("Donor");
+        myref=database.getReference("DONOR");
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +69,7 @@ public class DonorReg extends AppCompatActivity {
         String address=Address.getText().toString().trim();
         String contact=Contact.getText().toString().trim();
         String email=Email.getText().toString().trim();
+        //final String state=State.getText().toString().trim();
 
 
 
@@ -74,42 +79,59 @@ public class DonorReg extends AppCompatActivity {
                {
                    if(password.equals(repassword) && !password.equals(""))
                    {
-                       if(!contact.isEmpty() && contact.length()==10)
+                       if(password.length()>7)
                        {
-                           final DonorInfo info=new DonorInfo(name,email,address,contact);
-                           auth.createUserWithEmailAndPassword(email,password)
-                                   .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                       @Override
-                                       public void onComplete(@NonNull Task<AuthResult> task) {
-                                           if(task.isSuccessful())
-                                           {
-                                               myref.child(auth.getCurrentUser().getUid()).setValue(info);
+                           if(!contact.isEmpty() && contact.length()==10)
+                           {
+                               //if(!state.isEmpty())
+                               //{
+                                   final DonorInfo info=new DonorInfo(name,email,address,contact);
 
-                                               Toast.makeText(getApplicationContext(),"Registered Successfully",Toast.LENGTH_LONG).show();
-                                               Intent intent = new Intent(getApplicationContext(), Login.class);
-                                               intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                               startActivity(intent);
-
-                                           }
-                                           else
-                                           {
-                                               if (task.getException() instanceof FirebaseAuthUserCollisionException) {
-                                                   Toast.makeText(getApplicationContext(), "Email is already registered", Toast.LENGTH_LONG).show();
-                                               } else if (task.getException() instanceof FirebaseAuthWeakPasswordException) {
-                                                   Toast.makeText(getApplicationContext(), "Password is too weak", Toast.LENGTH_LONG).show();
-                                               } else {
-                                                   Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                   auth.createUserWithEmailAndPassword(email,password)
+                                           .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                               @Override
+                                               public void onComplete(@NonNull Task<AuthResult> task) {
+                                                   if(task.isSuccessful())
+                                                   {
+                                                       myref.child(auth.getCurrentUser().getUid()).child("Info").setValue(info);
+                                                       Toast.makeText(getApplicationContext(),"Registered Successfully",Toast.LENGTH_LONG).show();
+                                                       Intent intent = new Intent(getApplicationContext(), Login.class);
+                                                       intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                                       startActivity(intent);
+                                                       finish();
+                                                   }
+                                                   else
+                                                   {
+                                                       if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                                                           Toast.makeText(getApplicationContext(), "Email is already registered", Toast.LENGTH_LONG).show();
+                                                       } else if (task.getException() instanceof FirebaseAuthWeakPasswordException) {
+                                                           Toast.makeText(getApplicationContext(), "Password is too weak", Toast.LENGTH_LONG).show();
+                                                       } else {
+                                                           Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                                       }
+                                                   }
                                                }
-                                           }
-                                       }
-                                   });
+                                           });
+                              // }
+                               //else
+                               //{
+                                //   State.setError("Please Select State.");
+                                 //  State.requestFocus();
+                                  // return;
+                               //}
 
-
+                           }
+                           else
+                           {
+                               Contact.setError("Please Enter Conatct Number.");
+                               Contact.requestFocus();
+                               return;
+                           }
                        }
                        else
                        {
-                           Contact.setError("Please Enter Conatct Number.");
-                           Contact.requestFocus();
+                           Password.setError("Minimum Password Length is 8");
+                           Password.requestFocus();
                            return;
                        }
                    }

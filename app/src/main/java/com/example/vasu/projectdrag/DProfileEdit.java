@@ -45,8 +45,9 @@ public class DProfileEdit extends AppCompatActivity {
     ImageView profilepic;
     private static final int choose_Image=101;
     private EditText Name,Address,Contact;
-    private TextView Email;
+    private TextView Email,verify,resetpassword;
     Uri uriProfileImage;
+    //String stt;
     //ProgressBar progressBar;
     DatabaseReference myref;
     String profileImageUrl;
@@ -59,21 +60,34 @@ public class DProfileEdit extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dprofile_edit);
+        //Intent intent=getIntent();
+        //final String state1=intent.getStringExtra(Donor.EXTRA_TEXT);
+        //Toast.makeText(getApplicationContext(),state1+"Mridul",Toast.LENGTH_SHORT).show();
+        //stt=Statename(state1);
 
+        verify=(TextView)findViewById(R.id.id_verify);
+        resetpassword=(TextView)findViewById(R.id.id_reset);
         Name=(EditText)findViewById(R.id.id_name);
         Email=(TextView) findViewById(R.id.id_email);
         Address=(EditText)findViewById(R.id.id_address);
         Contact=(EditText)findViewById(R.id.id_contact);
         profilepic=(ImageView)findViewById(R.id.id_editpic);
+        //State=(TextView)findViewById(R.id.id_state);
         save=(Button)findViewById(R.id.id_save);
-
+        if(auth.getCurrentUser().isEmailVerified())
+        {
+            verify.setText("Verified Account");
+        }
+        else
+        {
+            verify.setText("Account is not Verified");
+        }
         auth=FirebaseAuth.getInstance();
         myref=FirebaseDatabase.getInstance().getReference("Donor");
         //Toast.makeText(getApplicationContext(), profileImageUrl, Toast.LENGTH_SHORT).show();
-
-        Email.setText(auth.getCurrentUser().getEmail());
-
-
+        String email=auth.getCurrentUser().getEmail().toString();
+        Email.setText(email);
+        //State.setText(state1);
         //Image OnClick
         profilepic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,6 +115,48 @@ public class DProfileEdit extends AppCompatActivity {
         });
 
 
+        resetpassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                auth.sendPasswordResetEmail(Email.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful())
+                        {
+                            Toast.makeText(getApplicationContext(),"Visit your Email to reset your Password",Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+            }
+        });
+
+
+        verify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(auth.getCurrentUser().isEmailVerified())
+                {
+                    verify.setText("Verified Account");
+                }
+                else
+                {
+                    verify.setText("Email is not Verified");
+                    auth.getCurrentUser().sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(getApplicationContext(),"Verification Email has been Sent",Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
+            }
+        });
+
+
+    }
+
+    private String Statename(String state1) {
+        return state1;
+
     }
 
 
@@ -109,7 +165,7 @@ public class DProfileEdit extends AppCompatActivity {
         super.onStart();
 
 
-        Log.d("dikkat","Contact"+myref.child(auth.getCurrentUser().getUid()).child("contact"));
+        //Log.d("dikkat","Contact"+myref.child(auth.getCurrentUser().getUid()).child("contact"));
 
         myref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -118,11 +174,13 @@ public class DProfileEdit extends AppCompatActivity {
 
 
                 //For Testing Purpose
+                /*
                 Log.d("dikkat1",dataSnapshot.child(auth.getCurrentUser().getUid()).getValue(DonorInfo.class).toString());
                 Log.d("dikkat2",dataSnapshot.child(auth.getCurrentUser().getUid()).getValue().toString());
                 Log.d("dikkat3",dataSnapshot.child(auth.getCurrentUser().getUid()).toString());
                 Log.d("dikkat4",dataSnapshot.toString());
                 Log.d("dikkat5","$$"+dataSnapshot.child(auth.getCurrentUser().getUid()).getValue(DonorInfo.class).getContact());
+                 */
                 //Testing Over
 
 
@@ -167,8 +225,6 @@ public class DProfileEdit extends AppCompatActivity {
                     .setDisplayName(Name.getText().toString())
                     .setPhotoUri(Uri.parse(profileImageUrl))
                     .build();
-
-
             user.updateProfile(profile)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -179,7 +235,6 @@ public class DProfileEdit extends AppCompatActivity {
                         }
                     }
                 });
-
         }
     }
 
@@ -227,14 +282,11 @@ public class DProfileEdit extends AppCompatActivity {
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-
                             Toast.makeText(getApplicationContext(),"Image failed to load",Toast.LENGTH_SHORT).show();
                         }
                     });
-
         }
     }
-
     private void showImageChooser()
     {
         Intent intent=new Intent();

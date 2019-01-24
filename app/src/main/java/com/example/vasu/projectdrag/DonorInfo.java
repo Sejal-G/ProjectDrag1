@@ -55,8 +55,8 @@ public class DonorInfo {
         Contact = contact;
     }
 
-    @Exclude
-    public Map<String, Object> toMap() {
+    //@Exclude
+    /*public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
         result.put("name", Name);
         result.put("contact", Contact);
@@ -64,5 +64,5 @@ public class DonorInfo {
         result.put("email", Email);
 
         return result;
-    }
+    }*/
 }

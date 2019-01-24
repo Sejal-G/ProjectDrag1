@@ -23,6 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class Splash extends AppCompatActivity{
     static int splashtime=2000;
     FirebaseAuth auth;
+    public static final String EXTRA_TEXT="com.example.vasu.projectdrag.EXTRA_TEXT";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,47 +40,49 @@ public class Splash extends AppCompatActivity{
                 user=sharedPref.getString("Email","");
                 pass=sharedPref.getString("Password","");
                 client=sharedPref.getString("Client","");
-                Toast.makeText(getApplicationContext(),user,Toast.LENGTH_SHORT).show();
                 if(!user.equals("") && !pass.equals("") && !client.equals(""))
                 {
                     //  Agar pehle Login krchuka hai tab andar aayega
+                    //Toast.makeText(getApplicationContext(),user,Toast.LENGTH_SHORT).show();
                     auth.signInWithEmailAndPassword(user,pass)
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                                        @Override
                                                        public void onComplete(@NonNull Task<AuthResult> task) {
                                                            if(task.isSuccessful())
                                                            {
-                                                               Toast.makeText(getApplicationContext(),"Hey Vasu",Toast.LENGTH_SHORT).show();
+                                                               //Toast.makeText(getApplicationContext(),"Hey Vasu",Toast.LENGTH_SHORT).show();
                                                                if(client.equals("SSO"))
                                                                {
                                                                    // agar SSO hai tab SSO khulega....
                                                                    Intent intent=new Intent(getApplicationContext(),SSO.class);
                                                                    startActivity(intent);
+                                                                   finish();
                                                                }
                                                                else
                                                                {
                                                                    // Agar Donor hai tab Donor khulega....
                                                                    Intent intent=new Intent(getApplicationContext(),Donor.class);
+                                                                   //intent.putExtra(EXTRA_TEXT,state);
                                                                    startActivity(intent);
+                                                                   finish();
                                                                }
                                                            }
                                                            else
                                                            {
                                                                // Agar koi error aati hai tab Home Page hi khulega
-                                                               Toast.makeText(getApplicationContext(),"Hey Dhammi",Toast.LENGTH_SHORT).show();
+                                                               //Toast.makeText(getApplicationContext(),"Hey Dhammi",Toast.LENGTH_SHORT).show();
                                                                Intent intent = new Intent(Splash.this, Home.class);
                                                                startActivity(intent);
                                                                finish();
                                                            }
                                                        }
                                                    }
-
                             );
                 }
                 else
                 {
                     // Agar ek baar bhi koi login nhi hua hai tab Login page yaha se khulega..
-                    Toast.makeText(getApplicationContext(),"Hey Dhammi",Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(),"Hey Dhammi",Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(Splash.this, Home.class);
                     startActivity(intent);
                     finish();

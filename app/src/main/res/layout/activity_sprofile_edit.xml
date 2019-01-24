@@ -8,30 +8,26 @@
     tools:layout_editor_absoluteY="81dp">
 
     <ImageView
-        android:id="@+id/id_picture"
+        android:id="@+id/id_pictue"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="84dp"
+        android:layout_height="192dp"
+        android:layout_marginEnd="92dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/id_account"
-        app:layout_constraintEnd_toStartOf="@+id/id_donate"
+        app:layout_constraintBottom_toTopOf="@+id/id_verify"
+        app:layout_constraintEnd_toStartOf="@+id/id_verify"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/profileimage" />
+        app:srcCompat="@drawable/ic_menu_camera" />
 
     <Button
         android:id="@+id/id_donate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="125dp"
         android:layout_marginEnd="38dp"
-        android:layout_marginTop="59dp"
+        android:layout_marginTop="58dp"
         android:text="Save"
-        app:layout_constraintBottom_toTopOf="@+id/id_account"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/id_pic"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
@@ -45,18 +41,19 @@
         app:layout_constraintBottom_toTopOf="@+id/id_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/id_account" />
+        app:layout_constraintTop_toBottomOf="@+id/id_ssoname1" />
 
     <EditText
         android:id="@+id/id_address"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginBottom="1dp"
         android:layout_marginEnd="4dp"
         android:layout_marginStart="4dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
-        app:layout_constraintBottom_toTopOf="@+id/id_contact"
+        app:layout_constraintBottom_toTopOf="@+id/id_contact1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/id_email" />
@@ -65,10 +62,10 @@
         android:id="@+id/id_ssoname1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
+        app:layout_constraintBottom_toTopOf="@+id/id_isonumber"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/id_account" />
@@ -90,7 +87,7 @@
         android:id="@+id/id_email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="9dp"
+        android:layout_marginBottom="8dp"
         android:text="TextView"
         app:layout_constraintBottom_toTopOf="@+id/id_address"
         app:layout_constraintEnd_toEndOf="parent"
@@ -101,16 +98,47 @@
         android:id="@+id/id_account"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="46dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Account Number"
-        app:layout_constraintBottom_toTopOf="@+id/id_isonumber"
+        app:layout_constraintBottom_toTopOf="@+id/id_ssoname1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/id_donate" />
+        app:layout_constraintTop_toBottomOf="@+id/id_state" />
+
+    <TextView
+        android:id="@+id/id_verify"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="14dp"
+        android:layout_marginEnd="59dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/id_reset"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/id_pictue"
+        app:layout_constraintTop_toBottomOf="@+id/id_pictue" />
+
+    <TextView
+        android:id="@+id/id_reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="Reset Password"
+        app:layout_constraintBottom_toTopOf="@+id/id_state"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_verify" />
+
+    <EditText
+        android:id="@+id/id_state"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="11dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        app:layout_constraintBottom_toTopOf="@+id/id_account"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_reset" />
 
 </android.support.constraint.ConstraintLayout>
-
-
-

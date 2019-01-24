@@ -3,9 +3,9 @@ package com.example.vasu.projectdrag;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 public class Register extends AppCompatActivity {
 
@@ -23,34 +23,32 @@ public class Register extends AppCompatActivity {
         sso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try{
-                    Intent intent = new Intent(Register.this,SSOReg.class);
-                    startActivity(intent);
-                }catch (Exception e)
-                {
-                    Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_LONG).show();
-                }
-                Toast.makeText(Register.this,"Hey Mayank",Toast.LENGTH_SHORT).show();
+                //Log.d("shivam","yeah");
+                Intent intent = new Intent(getApplicationContext(), SSOReg.class);
+
+                //Log.d("shivam","yeah1");
+                startActivity(intent);
+                finish();
+                // Log.d("shivam","yeah2");
             }
         });
 
         donor.setOnClickListener(new View.OnClickListener() {
-            @Override
+            //@Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),DonorReg.class);
                 startActivity(intent);
             }
         });
 
-        already.setOnClickListener(new View.OnClickListener() {
+       /* already.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),Login.class);
+                Intent intent = new Intent(getApplicationContext(),Home.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
 
     }
 }
-

@@ -40,13 +40,14 @@ public class SProfileEdit extends AppCompatActivity {
     private static final int CHOOSE_IMAGE = 101 ;
     ImageView profilePic;//using bitmap.
     EditText SSOName,ISOnumber,Address,Contact,AccountNo;
-    TextView Email;
+    TextView Email,verify,resetPassword;
     Button Save;
     Uri uriProfileImage;//uriZProfileImage = data.getData();[inside startActivityForResult()]
     String profileImageUrl;//To store the Downloaded URL of the image
     FirebaseAuth auth;
     DatabaseReference myRef;
     StorageReference storageReference;
+    String Chooser;
 
 
     @Override
@@ -54,13 +55,23 @@ public class SProfileEdit extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sprofile_edit);
 
-        profilePic = (ImageView)findViewById(R.id.id_picture);
+        profilePic = (ImageView)findViewById(R.id.id_pictue);
         SSOName = (EditText)findViewById(R.id.id_ssoname1);
         ISOnumber = (EditText)findViewById(R.id.id_isonumber);
         Email = (TextView)findViewById(R.id.id_email);
         Address = (EditText)findViewById(R.id.id_address);
         Contact = (EditText)findViewById(R.id.id_contact1);
         AccountNo = (EditText)findViewById(R.id.id_account);
+        verify = (TextView)findViewById(R.id.id_verify);
+        resetPassword = (TextView)findViewById(R.id.id_reset);
+//        State = (EditText)findViewById(R.id.id_state);
+
+        if(auth.getCurrentUser().isEmailVerified()){
+            verify.setText("Verified Account");
+        }
+        else{
+            verify.setText("Account is not verified");
+        }
 
         Save = (Button)findViewById(R.id.id_donate);
 
@@ -99,10 +110,50 @@ public class SProfileEdit extends AppCompatActivity {
             public void onClick(View v) {
 
                 showImageChooser();
+
                 //to select the image from the device.
 
             }
         });
+
+
+        resetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                auth.sendPasswordResetEmail(Email.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(getApplicationContext(),"Visit your email to reset your password.",Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+            }
+        });
+
+
+        verify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(auth.getCurrentUser().isEmailVerified()){
+                    verify.setText("Verified Account");
+                }
+                else {
+                    verify.setText("Account is not verified.");
+                    auth.getCurrentUser().sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(getApplicationContext(), "Verification Email has been sent", Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
+
+            }
+        });
+
+
+
 
     }
 
@@ -113,13 +164,15 @@ public class SProfileEdit extends AppCompatActivity {
         super.onStart();
         //Toast.makeText(getApplicationContext(),"Ye chl rha hai",Toast.LENGTH_LONG).show();
 
-        Log.d("dikkat","Conatct"+myRef.child(auth.getCurrentUser().getUid()).child("contact"));
+        //myRef.child(auth.getCurrentUser().getDisplayName().toString());
+
+        //Log.d("dikkat","Conatct"+myRef.child(auth.getCurrentUser().getUid()).child("contact"));
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                SSOInfo ssoInfo = dataSnapshot.child(auth.getCurrentUser().getUid()).getValue(SSOInfo.class);
+                SSOInfo ssoInfo = dataSnapshot.child(auth.getCurrentUser().getUid()).child("Info").getValue(SSOInfo.class);
 
 
                 //below code was used for testing . from here...
@@ -164,10 +217,11 @@ public class SProfileEdit extends AppCompatActivity {
             });
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(getApplicationContext(),"@@@@@@@@@@@@@@@@",Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(),"@@@@@@@@@@@@@@@@",Toast.LENGTH_LONG).show();
             return;
 
         }
+
 
     }
 

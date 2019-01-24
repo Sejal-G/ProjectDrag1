@@ -4,7 +4,6 @@
 
  *******************/
 package com.example.vasu.projectdrag;
-
 import com.google.firebase.database.Exclude;
 
 import java.util.HashMap;
@@ -13,12 +12,8 @@ import java.util.Map;
 public class SSOInfo {
 
     private String SSOName,ISOnumber,Email,Address,Contact,AccountNo;
-    private int RandE=0;
-
-    public Map<String, Boolean> stars = new HashMap<>();
 
     public SSOInfo(){
-
     }
 
     public SSOInfo(String ssoname, String isonumber, String email, String address, String contact,String accountno) {
@@ -28,12 +23,6 @@ public class SSOInfo {
         Address = address;
         Contact = contact;
         AccountNo = accountno;
-        RandE = 0;
-
-    }
-
-    public int getRandE() {
-        return RandE;
     }
 
     public String getAccountno() {
@@ -84,22 +73,4 @@ public class SSOInfo {
     public void setAccountno(String Accountno) {
         AccountNo = Accountno;
     }
-
-    public void setRandE() {
-        RandE = 0;
-    }
-
-    //ye ignore kr bhai
-
-    @Exclude
-    public Map<String, Object> toMap() {
-        HashMap<String, Object> result = new HashMap<>();
-        result.put("ssoname", SSOName);
-        result.put("isonumber", ISOnumber);
-        result.put("contact", Contact);
-        result.put("address", Address);
-        result.put("email", Email);
-        return result;
-    }
-
 }

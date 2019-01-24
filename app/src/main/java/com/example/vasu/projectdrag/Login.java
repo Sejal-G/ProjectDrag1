@@ -30,29 +30,20 @@ public class Login extends AppCompatActivity {
     RadioButton radioButton;
     EditText get_username,get_password;
     Button forgot_password,login,noaccount;
-
-
-
+    public static final String EXTRA_TEXT="com.example.vasu.projectdrag.EXTRA_TEXT";
     FirebaseAuth auth;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         radioGroup =findViewById(R.id.id_radiogroup);
         get_username=(EditText)findViewById(R.id.id_getusername);
         get_password=(EditText)findViewById(R.id.id_getpassword);
         forgot_password=(Button)findViewById(R.id.id_forgotpassword);
         login=(Button)findViewById(R.id.id_login);
         noaccount=(Button)findViewById(R.id.id_noaccount);
-
+        //State=(EditText)findViewById(R.id.id_state);
         auth=FirebaseAuth.getInstance();
-
-
-
-
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,6 +76,7 @@ public class Login extends AppCompatActivity {
 
         final String username = get_username.getText().toString().trim();
         final String password = get_password.getText().toString().trim();
+        // final String state =State.getText().toString().toLowerCase().trim();
 
         if(username.isEmpty()){
 
@@ -114,22 +106,31 @@ public class Login extends AppCompatActivity {
             return;
         }
 
+        /*if(state.isEmpty())
+        {
+            State.setError("State Required");
+            State.requestFocus();
+            return;
+        }*/
+
         auth.signInWithEmailAndPassword(username,password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful())
                         {
+
                             SharedPreferences sharedPref=getSharedPreferences("MyData", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor=sharedPref.edit();
                             editor.putString("Email",username);
                             editor.putString("Password",password);
                             editor.putString("Client",radioButton.getText().toString());
+                            // editor.putString("State",state);
                             editor.commit();
                             //Toast.makeText(getApplicationContext(),"Hey Vasu",Toast.LENGTH_SHORT).show();
                             if(radioButton.getText().toString().equals("SSO"))
                             {
-                                finish();
+
                                 // Shared Preference Starts
 
 
@@ -141,16 +142,19 @@ public class Login extends AppCompatActivity {
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 //...Login ho kar phir vapis login page pr nhi jayega.
                                 startActivity(intent);
+                                finish();
                             }
                             else
                             {
                                 //Toast.makeText(getApplicationContext(),"Hey Mayank",Toast.LENGTH_SHORT).show();
-                                finish();
+                                //finish();
                                 Intent intent=new Intent(getApplicationContext(),Donor.class);
-
+                                //Toast.makeText(getApplicationContext(),,Toast.LENGTH_SHORT).show();
+                                //intent.putExtra(EXTRA_TEXT,state);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
                                 startActivity(intent);
+                                finish();
                             }
                         }
                         else {
@@ -164,8 +168,6 @@ public class Login extends AppCompatActivity {
     public void Client(View v)
     {
         //Toast.makeText(getApplicationContext(),"Hey Sejal",Toast.LENGTH_SHORT).show();
-
-
         radioButton=(RadioButton)findViewById(radioGroup.getCheckedRadioButtonId());
 
     }
