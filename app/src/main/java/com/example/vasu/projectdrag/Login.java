@@ -137,6 +137,7 @@ public class Login extends AppCompatActivity {
 
                                 // Shared Preference Ends
 
+                                //Dhammi mein Main krna padega,SSO ki jagah
                                 Intent intent=new Intent(getApplicationContext(),SSO.class);
                                 //bhai isse se...
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -146,8 +147,7 @@ public class Login extends AppCompatActivity {
                             }
                             else
                             {
-                                //Toast.makeText(getApplicationContext(),"Hey Mayank",Toast.LENGTH_SHORT).show();
-                                //finish();
+                                //Dhammi mein MainD krna padega,Donor ki jagah
                                 Intent intent=new Intent(getApplicationContext(),Donor.class);
                                 //Toast.makeText(getApplicationContext(),,Toast.LENGTH_SHORT).show();
                                 //intent.putExtra(EXTRA_TEXT,state);
@@ -158,7 +158,7 @@ public class Login extends AppCompatActivity {
                             }
                         }
                         else {
-                            Toast.makeText(getApplicationContext(),"LoggedIn Failed",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(),"Login Failed",Toast.LENGTH_SHORT).show();
                             Toast.makeText(getApplicationContext(),task.getException().getMessage(),Toast.LENGTH_LONG).show();
 
                         }

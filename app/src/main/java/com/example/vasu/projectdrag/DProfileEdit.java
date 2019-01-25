@@ -109,7 +109,7 @@ public class DProfileEdit extends AppCompatActivity {
                         Address.getText().toString(),
                         Contact.getText().toString());
 
-                myref.child(auth.getCurrentUser().getUid()).setValue(newinfo);
+                myref.child(auth.getCurrentUser().getUid()).child("Info").setValue(newinfo);
 
             }
         });
@@ -170,7 +170,7 @@ public class DProfileEdit extends AppCompatActivity {
         myref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                DonorInfo donorInfo=dataSnapshot.child(auth.getCurrentUser().getUid()).getValue(DonorInfo.class);
+                DonorInfo donorInfo=dataSnapshot.child(auth.getCurrentUser().getUid()).child("Info").getValue(DonorInfo.class);
 
 
                 //For Testing Purpose

@@ -21,7 +21,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Splash extends AppCompatActivity{
-    static int splashtime=2000;
+    static int splashtime=1000;
     FirebaseAuth auth;
     public static final String EXTRA_TEXT="com.example.vasu.projectdrag.EXTRA_TEXT";
 
@@ -54,6 +54,8 @@ public class Splash extends AppCompatActivity{
                                                                if(client.equals("SSO"))
                                                                {
                                                                    // agar SSO hai tab SSO khulega....
+
+                                                                   // Dhammi mein isko Main  krna hai, SSO ki jagah
                                                                    Intent intent=new Intent(getApplicationContext(),SSO.class);
                                                                    startActivity(intent);
                                                                    finish();
@@ -61,6 +63,8 @@ public class Splash extends AppCompatActivity{
                                                                else
                                                                {
                                                                    // Agar Donor hai tab Donor khulega....
+
+                                                                   // Dhammi mein MainD banana padega.
                                                                    Intent intent=new Intent(getApplicationContext(),Donor.class);
                                                                    //intent.putExtra(EXTRA_TEXT,state);
                                                                    startActivity(intent);

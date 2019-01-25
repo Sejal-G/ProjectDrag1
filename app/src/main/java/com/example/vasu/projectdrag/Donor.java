@@ -60,7 +60,7 @@ public class Donor extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donor);
-        Intent intent=getIntent();
+        //Intent intent=getIntent();
         //String st=intent.getStringExtra(Login.EXTRA_TEXT);
        /* if(st.isEmpty())
         {   Toast.makeText(getApplicationContext(),"Sejal",Toast.LENGTH_SHORT).show();

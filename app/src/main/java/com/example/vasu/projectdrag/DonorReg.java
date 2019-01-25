@@ -92,8 +92,9 @@ public class DonorReg extends AppCompatActivity {
                                                @Override
                                                public void onComplete(@NonNull Task<AuthResult> task) {
                                                    if(task.isSuccessful())
-                                                   {
+                                                   {   EventInfo eventInfo=new EventInfo("Empty","Empty");
                                                        myref.child(auth.getCurrentUser().getUid()).child("Info").setValue(info);
+                                                       myref.child(auth.getCurrentUser().getUid()).child("Event").setValue(eventInfo);
                                                        Toast.makeText(getApplicationContext(),"Registered Successfully",Toast.LENGTH_LONG).show();
                                                        Intent intent = new Intent(getApplicationContext(), Login.class);
                                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

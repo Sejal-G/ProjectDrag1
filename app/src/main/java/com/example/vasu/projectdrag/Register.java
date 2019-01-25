@@ -20,24 +20,23 @@ public class Register extends AppCompatActivity {
         donor = (Button) findViewById(R.id.id_donor);
         already = (Button) findViewById(R.id.id_already);
 
+
         sso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Log.d("shivam","yeah");
                 Intent intent = new Intent(getApplicationContext(), SSOReg.class);
-
-                //Log.d("shivam","yeah1");
                 startActivity(intent);
                 finish();
-                // Log.d("shivam","yeah2");
             }
         });
+
 
         donor.setOnClickListener(new View.OnClickListener() {
             //@Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),DonorReg.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -46,6 +45,7 @@ public class Register extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),Home.class);
                 startActivity(intent);
+                finish();
             }
         });*/
 
