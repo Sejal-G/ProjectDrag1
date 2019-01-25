@@ -1,6 +1,8 @@
 package com.example.vasu.projectdrag;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,11 +12,18 @@ import android.widget.Button;
 public class Home extends AppCompatActivity {
 
     Button register,login;
+    private ConstraintLayout constraintLayout;
+    private AnimationDrawable animationDrawable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        getSupportActionBar().hide();
+
+
+        backgroundAnimation();//trigger background animation
 
 
         register=(Button)findViewById(R.id.id_register);
@@ -36,5 +45,14 @@ public class Home extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    void backgroundAnimation()
+    {
+        constraintLayout = (ConstraintLayout) findViewById(R.id.constraintLayout);
+        animationDrawable = (AnimationDrawable) constraintLayout.getBackground();//Background animation
+        animationDrawable.setEnterFadeDuration(2000);
+        animationDrawable.setExitFadeDuration(2000);
+        animationDrawable.start();
     }
 }
