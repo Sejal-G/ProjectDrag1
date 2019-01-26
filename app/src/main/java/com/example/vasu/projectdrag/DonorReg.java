@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,6 +35,9 @@ public class DonorReg extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donor_reg);
+
+        getSupportActionBar().setTitle("Donor Register");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Name=(EditText)findViewById(R.id.id_name);
         Password=(EditText)findViewById(R.id.id_password);
@@ -124,7 +128,7 @@ public class DonorReg extends AppCompatActivity {
                            }
                            else
                            {
-                               Contact.setError("Please Enter Conatct Number.");
+                               Contact.setError("Please Enter Contact Number.");
                                Contact.requestFocus();
                                return;
                            }
@@ -157,6 +161,17 @@ public class DonorReg extends AppCompatActivity {
            return;
        }
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 }

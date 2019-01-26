@@ -1,106 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DonorReg"
-    tools:layout_editor_absoluteY="81dp">
+    tools:layout_editor_absoluteY="81dp"
+    android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:layout_width="350dp"
+        android:layout_height="match_parent">
     <EditText
+        android:background="@drawable/textbox"
+        android:padding="10dp"
+        android:layout_marginBottom="20dp"
         android:id="@+id/id_name"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:layout_marginStart="29dp"
-        android:layout_marginTop="3dp"
-        android:ems="10"
         android:hint="Name"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/id_address"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
+        android:inputType="textPersonName"/>
 
     <EditText
+        android:background="@drawable/textbox"
+        android:padding="10dp"
+        android:layout_marginBottom="20dp"
         android:id="@+id/id_address"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:ems="10"
-        android:hint="Address"
-        android:inputType="textLongMessage"
-        app:layout_constraintBottom_toTopOf="@+id/id_email"
-        app:layout_constraintStart_toStartOf="@+id/id_name"
-        app:layout_constraintTop_toBottomOf="@+id/id_name" />
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:hint="Address"/>
 
     <EditText
+        android:background="@drawable/textbox"
+        android:padding="10dp"
+        android:layout_marginBottom="20dp"
         android:id="@+id/id_email"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="9dp"
-        android:ems="10"
         android:hint="Email"
-        android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/id_state"
-        app:layout_constraintStart_toStartOf="@+id/id_address"
-        app:layout_constraintTop_toBottomOf="@+id/id_address" />
+        android:inputType="textEmailAddress"/>
 
     <EditText
+        android:background="@drawable/textbox"
+        android:padding="10dp"
+        android:layout_marginBottom="20dp"
         android:id="@+id/id_password"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:ems="10"
         android:hint="Password"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/id_repassword"
-        app:layout_constraintStart_toStartOf="@+id/id_state"
-        app:layout_constraintTop_toBottomOf="@+id/id_state" />
+        android:inputType="textPassword"/>
 
     <EditText
+        android:background="@drawable/textbox"
+        android:padding="10dp"
+        android:layout_marginBottom="20dp"
         android:id="@+id/id_repassword"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="7dp"
-        android:ems="10"
         android:hint="Re-Enter Password "
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/id_contact"
-        app:layout_constraintStart_toStartOf="@+id/id_password"
-        app:layout_constraintTop_toBottomOf="@+id/id_password" />
+        android:inputType="textPassword"/>
+
+    <EditText
+        android:background="@drawable/textbox"
+        android:padding="10dp"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/id_contact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Contact"
+        android:inputType="phone"/>
+
+        <EditText
+            android:id="@+id/id_state"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/textbox"
+            android:fontFamily="@font/roboto"
+            android:hint="State"
+            android:inputType="textPersonName"
+            android:padding="10dp" />
 
     <Button
+        android:textColor="#ffff"
+        android:background="@drawable/buttonbackground"
+        android:layout_gravity="center"
         android:id="@+id/id_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:text="Register"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/id_contact"
-        app:layout_constraintTop_toBottomOf="@+id/id_contact" />
-
-    <EditText
-        android:id="@+id/id_contact"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="9dp"
-        android:ems="10"
-        android:hint="Contact"
-        android:inputType="phone"
-        app:layout_constraintBottom_toTopOf="@+id/id_register"
-        app:layout_constraintStart_toStartOf="@+id/id_repassword"
-        app:layout_constraintTop_toBottomOf="@+id/id_repassword" />
-
-    <EditText
-        android:id="@+id/id_state"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="14dp"
-        android:ems="10"
-        android:hint="State"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/id_password"
-        app:layout_constraintStart_toStartOf="@+id/id_email"
-        app:layout_constraintTop_toBottomOf="@+id/id_email" />
-</android.support.constraint.ConstraintLayout>
+        android:text="Register" />
+    </LinearLayout>
+</LinearLayout>
