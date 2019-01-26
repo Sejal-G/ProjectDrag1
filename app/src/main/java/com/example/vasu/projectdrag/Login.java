@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Patterns;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -36,6 +37,9 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        getSupportActionBar().setTitle("Login");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         radioGroup =findViewById(R.id.id_radiogroup);
         get_username=(EditText)findViewById(R.id.id_getusername);
         get_password=(EditText)findViewById(R.id.id_getpassword);
@@ -170,5 +174,16 @@ public class Login extends AppCompatActivity {
         //Toast.makeText(getApplicationContext(),"Hey Sejal",Toast.LENGTH_SHORT).show();
         radioButton=(RadioButton)findViewById(radioGroup.getCheckedRadioButtonId());
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
