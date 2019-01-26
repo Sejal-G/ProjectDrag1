@@ -7,7 +7,7 @@
     tools:context=".Login"
     android:orientation="vertical"
     tools:layout_editor_absoluteY="81dp"
-    android:background="#ddd">
+    android:background="#DBDBDB">
 
     <RadioGroup
         android:layout_marginTop="30dp"
@@ -39,7 +39,7 @@
     </RadioGroup>
 
     <RelativeLayout
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -86,7 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
             android:layout_alignBottom="@+id/view"
-            android:background="#ddd"
+            android:background="#DBDBDB"
             android:includeFontPadding="false"
             android:paddingBottom="10dp"
             android:paddingLeft="10dp"
@@ -142,7 +142,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
             android:layout_alignBottom="@+id/viiew"
-            android:background="#ddd"
+            android:background="#DBDBDB"
             android:includeFontPadding="false"
             android:paddingBottom="10dp"
             android:paddingLeft="10dp"
@@ -245,18 +245,20 @@
         tools:layout_editor_absoluteX="57dp"
         tools:layout_editor_absoluteY="351dp" />
 
-    <Button
-        android:id="@+id/id_noaccount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="26dp"
-        android:text="Don't have an account"
-        tools:layout_editor_absoluteX="164dp"
-        tools:layout_editor_absoluteY="351dp"
-        android:layout_marginTop="100dp"
-        android:background="@null"/>
+        <Button
+            android:id="@+id/id_noaccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp"
+            android:layout_marginBottom="26dp"
+            android:background="@null"
+            android:fontFamily="@font/roboto"
+            android:text="Don't have an account? Register"
+            android:textAllCaps="false"
+            tools:layout_editor_absoluteX="164dp"
+            tools:layout_editor_absoluteY="351dp" />
     </LinearLayout>
 
 </LinearLayout>
