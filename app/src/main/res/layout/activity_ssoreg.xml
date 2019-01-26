@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".SSOReg"
     tools:layout_editor_absoluteY="81dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#dbdbdb">
 
     <LinearLayout
         android:layout_marginTop="50dp"
