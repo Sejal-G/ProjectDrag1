@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -37,6 +38,9 @@ public class SSOReg extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ssoreg);
+
+        getSupportActionBar().setTitle("SSO Register");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Password = (EditText)findViewById(R.id.id_password);
         RePassword = (EditText)findViewById(R.id.id_repassword);
@@ -207,6 +211,17 @@ public class SSOReg extends AppCompatActivity {
             return;
         }
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 

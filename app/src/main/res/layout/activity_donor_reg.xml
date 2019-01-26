@@ -43,27 +43,7 @@
         android:hint="Email"
         android:inputType="textEmailAddress"/>
 
-    <EditText
-        android:background="@drawable/textbox"
-        android:padding="10dp"
-        android:layout_marginBottom="20dp"
-        android:id="@+id/id_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Password"
-        android:inputType="textPassword"/>
-
-    <EditText
-        android:background="@drawable/textbox"
-        android:padding="10dp"
-        android:layout_marginBottom="20dp"
-        android:id="@+id/id_repassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Re-Enter Password "
-        android:inputType="textPassword"/>
-
-    <EditText
+        <EditText
         android:background="@drawable/textbox"
         android:padding="10dp"
         android:layout_marginBottom="20dp"
@@ -74,17 +54,26 @@
         android:inputType="phone"/>
 
         <EditText
-            android:id="@+id/id_state"
+            android:id="@+id/id_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:background="@drawable/textbox"
-            android:fontFamily="@font/roboto"
-            android:hint="State"
-            android:inputType="textPersonName"
+            android:hint="Password"
+            android:inputType="textPassword"
             android:padding="10dp" />
 
-    <Button
+        <EditText
+            android:id="@+id/id_repassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/textbox"
+            android:hint="Re-Enter Password "
+            android:inputType="textPassword"
+            android:padding="10dp" />
+
+        <Button
         android:textColor="#ffff"
         android:background="@drawable/buttonbackground"
         android:layout_gravity="center"
